@@ -1,0 +1,815 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBTelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCodtela">
+          <Key>
+            <PropertyRef Name="idCodTela" />
+          </Key>
+          <Property Name="idCodTela" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodTela" Type="nvarchar" MaxLength="50" />
+          <Property Name="idcolor" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="idcliente" Type="int" />
+        </EntityType>
+        <EntityType Name="tbcontenedor">
+          <Key>
+            <PropertyRef Name="idcontenedor" />
+          </Key>
+          <Property Name="idcontenedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contenedor" Type="nvarchar" MaxLength="20" />
+          <Property Name="totalRollos" Type="int" />
+          <Property Name="totalYardas" Type="float" />
+          <Property Name="fechaRecibido" Type="nchar" MaxLength="10" />
+          <Property Name="fechaDescargado" Type="nchar" MaxLength="10" />
+          <Property Name="fechaEnvio" Type="nchar" MaxLength="10" />
+          <Property Name="estado" Type="nchar" MaxLength="10" />
+          <Property Name="userName" Type="nchar" MaxLength="15" />
+          <Property Name="idcliente" Type="int" />
+        </EntityType>
+        <EntityType Name="tbPoCont">
+          <Key>
+            <PropertyRef Name="idPoCont" />
+          </Key>
+          <Property Name="idPoCont" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="daterecuv" Type="date" />
+          <Property Name="invoicePO" Type="nchar" MaxLength="25" />
+          <Property Name="idcontenedor" Type="int" />
+          <Property Name="estado" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tbrollos">
+          <Key>
+            <PropertyRef Name="idrollo" />
+          </Key>
+          <Property Name="idrollo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolloName" Type="nvarchar" MaxLength="15" />
+          <Property Name="ydastotal" Type="float" />
+          <Property Name="ydsrestantes" Type="float" />
+          <Property Name="sec" Type="int" />
+          <Property Name="estado" Type="nchar" MaxLength="15" />
+          <Property Name="idpoCont" Type="int" />
+          <Property Name="idtpc" Type="int" />
+          <Property Name="timesp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="ancho" Type="float" />
+          <Property Name="tono" Type="nchar" MaxLength="15" />
+          <Property Name="lock" Type="bit" />
+          <Property Name="sec2" Type="nchar" MaxLength="10" />
+          <Property Name="proceso" Type="nvarchar" MaxLength="50" />
+          <Property Name="etiqueta" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tbswatch">
+          <Key>
+            <PropertyRef Name="idswatches" />
+          </Key>
+          <Property Name="idswatches" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idrollo" Type="int" Nullable="false" />
+          <Property Name="x1" Type="float" />
+          <Property Name="x2" Type="float" />
+          <Property Name="x3" Type="float" />
+          <Property Name="y1" Type="float" />
+          <Property Name="y2" Type="float" />
+          <Property Name="y3" Type="float" />
+          <Property Name="p1" Type="float" />
+          <Property Name="p2" Type="float" />
+          <Property Name="p3" Type="float" />
+          <Property Name="p4" Type="float" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="usuario" Type="nchar" MaxLength="20" />
+          <Property Name="a1" Type="float" />
+          <Property Name="a2" Type="float" />
+          <Property Name="a3" Type="float" />
+          <Property Name="b1" Type="float" />
+          <Property Name="b2" Type="float" />
+          <Property Name="b3" Type="float" />
+          <Property Name="fechaP2" Type="datetime" />
+          <Property Name="usuarioP2" Type="nchar" MaxLength="20" />
+          <Property Name="c1" Type="float" />
+          <Property Name="c2" Type="float" />
+          <Property Name="c3" Type="float" />
+          <Property Name="z1" Type="float" />
+          <Property Name="z2" Type="float" />
+          <Property Name="z3" Type="float" />
+          <Property Name="fechaP3" Type="datetime" />
+          <Property Name="usuarioP3" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbtelaprocol">
+          <Key>
+            <PropertyRef Name="idtpc" />
+          </Key>
+          <Property Name="idtpc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idtela" Type="int" />
+          <Property Name="idproveedor" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="procod" Type="nvarchar" MaxLength="50" />
+          <Property Name="MarkerWidth" Type="float" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPoCont_tbcontenedor">
+          <End Role="tbcontenedor" Type="Self.tbcontenedor" Multiplicity="0..1" />
+          <End Role="tbPoCont" Type="Self.tbPoCont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcontenedor">
+              <PropertyRef Name="idcontenedor" />
+            </Principal>
+            <Dependent Role="tbPoCont">
+              <PropertyRef Name="idcontenedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbrollos_tbPoCont">
+          <End Role="tbPoCont" Type="Self.tbPoCont" Multiplicity="0..1" />
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPoCont">
+              <PropertyRef Name="idPoCont" />
+            </Principal>
+            <Dependent Role="tbrollos">
+              <PropertyRef Name="idpoCont" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbrollos_tbtelaprocol">
+          <End Role="tbtelaprocol" Type="Self.tbtelaprocol" Multiplicity="0..1" />
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtelaprocol">
+              <PropertyRef Name="idtpc" />
+            </Principal>
+            <Dependent Role="tbrollos">
+              <PropertyRef Name="idtpc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbswatch_tbrollos">
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="1" />
+          <End Role="tbswatch" Type="Self.tbswatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbrollos">
+              <PropertyRef Name="idrollo" />
+            </Principal>
+            <Dependent Role="tbswatch">
+              <PropertyRef Name="idrollo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbtelaprocol_tbCodtela">
+          <End Role="tbCodtela" Type="Self.tbCodtela" Multiplicity="0..1" />
+          <End Role="tbtelaprocol" Type="Self.tbtelaprocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCodtela">
+              <PropertyRef Name="idCodTela" />
+            </Principal>
+            <Dependent Role="tbtelaprocol">
+              <PropertyRef Name="idtela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBTelaModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCodtela" EntityType="Self.tbCodtela" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbcontenedor" EntityType="Self.tbcontenedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPoCont" EntityType="Self.tbPoCont" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbrollos" EntityType="Self.tbrollos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbswatch" EntityType="Self.tbswatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbtelaprocol" EntityType="Self.tbtelaprocol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPoCont_tbcontenedor" Association="Self.FK_tbPoCont_tbcontenedor">
+            <End Role="tbcontenedor" EntitySet="tbcontenedor" />
+            <End Role="tbPoCont" EntitySet="tbPoCont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbrollos_tbPoCont" Association="Self.FK_tbrollos_tbPoCont">
+            <End Role="tbPoCont" EntitySet="tbPoCont" />
+            <End Role="tbrollos" EntitySet="tbrollos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbrollos_tbtelaprocol" Association="Self.FK_tbrollos_tbtelaprocol">
+            <End Role="tbtelaprocol" EntitySet="tbtelaprocol" />
+            <End Role="tbrollos" EntitySet="tbrollos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbswatch_tbrollos" Association="Self.FK_tbswatch_tbrollos">
+            <End Role="tbrollos" EntitySet="tbrollos" />
+            <End Role="tbswatch" EntitySet="tbswatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbtelaprocol_tbCodtela" Association="Self.FK_tbtelaprocol_tbCodtela">
+            <End Role="tbCodtela" EntitySet="tbCodtela" />
+            <End Role="tbtelaprocol" EntitySet="tbtelaprocol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBTelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="tbCodtela">
+          <Key>
+            <PropertyRef Name="idCodTela" />
+          </Key>
+          <Property Name="idCodTela" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodTela" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idcolor" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idcliente" Type="Int32" />
+          <NavigationProperty Name="tbtelaprocol" Relationship="Self.FK_tbtelaprocol_tbCodtela" FromRole="tbCodtela" ToRole="tbtelaprocol" />
+        </EntityType>
+        <EntityType Name="tbcontenedor">
+          <Key>
+            <PropertyRef Name="idcontenedor" />
+          </Key>
+          <Property Name="idcontenedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contenedor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalRollos" Type="Int32" />
+          <Property Name="totalYardas" Type="Double" />
+          <Property Name="fechaRecibido" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fechaDescargado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fechaEnvio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="idcliente" Type="Int32" />
+          <NavigationProperty Name="tbPoCont" Relationship="Self.FK_tbPoCont_tbcontenedor" FromRole="tbcontenedor" ToRole="tbPoCont" />
+        </EntityType>
+        <EntityType Name="tbPoCont">
+          <Key>
+            <PropertyRef Name="idPoCont" />
+          </Key>
+          <Property Name="idPoCont" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="daterecuv" Type="DateTime" Precision="0" />
+          <Property Name="invoicePO" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="idcontenedor" Type="Int32" />
+          <Property Name="estado" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbcontenedor" Relationship="Self.FK_tbPoCont_tbcontenedor" FromRole="tbPoCont" ToRole="tbcontenedor" />
+          <NavigationProperty Name="tbrollos" Relationship="Self.FK_tbrollos_tbPoCont" FromRole="tbPoCont" ToRole="tbrollos" />
+        </EntityType>
+        <EntityType Name="tbrollos">
+          <Key>
+            <PropertyRef Name="idrollo" />
+          </Key>
+          <Property Name="idrollo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolloName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ydastotal" Type="Double" />
+          <Property Name="ydsrestantes" Type="Double" />
+          <Property Name="sec" Type="Int32" />
+          <Property Name="estado" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="idpoCont" Type="Int32" />
+          <Property Name="idtpc" Type="Int32" />
+          <Property Name="timesp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ancho" Type="Double" />
+          <Property Name="tono" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="lock" Type="Boolean" />
+          <Property Name="sec2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="proceso" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="etiqueta" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbPoCont" Relationship="Self.FK_tbrollos_tbPoCont" FromRole="tbrollos" ToRole="tbPoCont" />
+          <NavigationProperty Name="tbtelaprocol" Relationship="Self.FK_tbrollos_tbtelaprocol" FromRole="tbrollos" ToRole="tbtelaprocol" />
+          <NavigationProperty Name="tbswatch" Relationship="Self.FK_tbswatch_tbrollos" FromRole="tbrollos" ToRole="tbswatch" />
+        </EntityType>
+        <EntityType Name="tbswatch">
+          <Key>
+            <PropertyRef Name="idswatches" />
+          </Key>
+          <Property Name="idswatches" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idrollo" Type="Int32" Nullable="false" />
+          <Property Name="x1" Type="Double" />
+          <Property Name="x2" Type="Double" />
+          <Property Name="x3" Type="Double" />
+          <Property Name="y1" Type="Double" />
+          <Property Name="y2" Type="Double" />
+          <Property Name="y3" Type="Double" />
+          <Property Name="p1" Type="Double" />
+          <Property Name="p2" Type="Double" />
+          <Property Name="p3" Type="Double" />
+          <Property Name="p4" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="a1" Type="Double" />
+          <Property Name="a2" Type="Double" />
+          <Property Name="a3" Type="Double" />
+          <Property Name="b1" Type="Double" />
+          <Property Name="b2" Type="Double" />
+          <Property Name="b3" Type="Double" />
+          <Property Name="fechaP2" Type="DateTime" Precision="3" />
+          <Property Name="usuarioP2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="c1" Type="Double" />
+          <Property Name="c2" Type="Double" />
+          <Property Name="c3" Type="Double" />
+          <Property Name="z1" Type="Double" />
+          <Property Name="z2" Type="Double" />
+          <Property Name="z3" Type="Double" />
+          <Property Name="fechaP3" Type="DateTime" Precision="3" />
+          <Property Name="usuarioP3" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tbrollos" Relationship="Self.FK_tbswatch_tbrollos" FromRole="tbswatch" ToRole="tbrollos" />
+        </EntityType>
+        <EntityType Name="tbtelaprocol">
+          <Key>
+            <PropertyRef Name="idtpc" />
+          </Key>
+          <Property Name="idtpc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idtela" Type="Int32" />
+          <Property Name="idproveedor" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="procod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MarkerWidth" Type="Double" />
+          <NavigationProperty Name="tbCodtela" Relationship="Self.FK_tbtelaprocol_tbCodtela" FromRole="tbtelaprocol" ToRole="tbCodtela" />
+          <NavigationProperty Name="tbrollos" Relationship="Self.FK_tbrollos_tbtelaprocol" FromRole="tbtelaprocol" ToRole="tbrollos" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbtelaprocol_tbCodtela">
+          <End Role="tbCodtela" Type="Self.tbCodtela" Multiplicity="0..1" />
+          <End Role="tbtelaprocol" Type="Self.tbtelaprocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCodtela">
+              <PropertyRef Name="idCodTela" />
+            </Principal>
+            <Dependent Role="tbtelaprocol">
+              <PropertyRef Name="idtela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbPoCont_tbcontenedor">
+          <End Role="tbcontenedor" Type="Self.tbcontenedor" Multiplicity="0..1" />
+          <End Role="tbPoCont" Type="Self.tbPoCont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcontenedor">
+              <PropertyRef Name="idcontenedor" />
+            </Principal>
+            <Dependent Role="tbPoCont">
+              <PropertyRef Name="idcontenedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbrollos_tbPoCont">
+          <End Role="tbPoCont" Type="Self.tbPoCont" Multiplicity="0..1" />
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPoCont">
+              <PropertyRef Name="idPoCont" />
+            </Principal>
+            <Dependent Role="tbrollos">
+              <PropertyRef Name="idpoCont" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbrollos_tbtelaprocol">
+          <End Role="tbtelaprocol" Type="Self.tbtelaprocol" Multiplicity="0..1" />
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtelaprocol">
+              <PropertyRef Name="idtpc" />
+            </Principal>
+            <Dependent Role="tbrollos">
+              <PropertyRef Name="idtpc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbswatch_tbrollos">
+          <End Role="tbrollos" Type="Self.tbrollos" Multiplicity="1" />
+          <End Role="tbswatch" Type="Self.tbswatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbrollos">
+              <PropertyRef Name="idrollo" />
+            </Principal>
+            <Dependent Role="tbswatch">
+              <PropertyRef Name="idrollo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBTelaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="tbCodtela" EntityType="Self.tbCodtela" />
+          <EntitySet Name="tbcontenedor" EntityType="Self.tbcontenedor" />
+          <EntitySet Name="tbPoCont" EntityType="Self.tbPoCont" />
+          <EntitySet Name="tbrollos" EntityType="Self.tbrollos" />
+          <EntitySet Name="tbswatch" EntityType="Self.tbswatch" />
+          <EntitySet Name="tbtelaprocol" EntityType="Self.tbtelaprocol" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbtelaprocol_tbCodtela" Association="Self.FK_tbtelaprocol_tbCodtela">
+            <End Role="tbCodtela" EntitySet="tbCodtela" />
+            <End Role="tbtelaprocol" EntitySet="tbtelaprocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbPoCont_tbcontenedor" Association="Self.FK_tbPoCont_tbcontenedor">
+            <End Role="tbcontenedor" EntitySet="tbcontenedor" />
+            <End Role="tbPoCont" EntitySet="tbPoCont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbrollos_tbPoCont" Association="Self.FK_tbrollos_tbPoCont">
+            <End Role="tbPoCont" EntitySet="tbPoCont" />
+            <End Role="tbrollos" EntitySet="tbrollos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbrollos_tbtelaprocol" Association="Self.FK_tbrollos_tbtelaprocol">
+            <End Role="tbtelaprocol" EntitySet="tbtelaprocol" />
+            <End Role="tbrollos" EntitySet="tbrollos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbswatch_tbrollos" Association="Self.FK_tbswatch_tbrollos">
+            <End Role="tbrollos" EntitySet="tbrollos" />
+            <End Role="tbswatch" EntitySet="tbswatch" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBTelaModelStoreContainer" CdmEntityContainer="DBTelaEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="DBTelaModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="DBTelaModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="DBTelaModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="DBTelaModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCodtela">
+            <EntityTypeMapping TypeName="DBTelaModel.tbCodtela">
+              <MappingFragment StoreEntitySet="tbCodtela">
+                <ScalarProperty Name="idCodTela" ColumnName="idCodTela" />
+                <ScalarProperty Name="CodTela" ColumnName="CodTela" />
+                <ScalarProperty Name="idcolor" ColumnName="idcolor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbcontenedor">
+            <EntityTypeMapping TypeName="DBTelaModel.tbcontenedor">
+              <MappingFragment StoreEntitySet="tbcontenedor">
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+                <ScalarProperty Name="contenedor" ColumnName="contenedor" />
+                <ScalarProperty Name="totalRollos" ColumnName="totalRollos" />
+                <ScalarProperty Name="totalYardas" ColumnName="totalYardas" />
+                <ScalarProperty Name="fechaRecibido" ColumnName="fechaRecibido" />
+                <ScalarProperty Name="fechaDescargado" ColumnName="fechaDescargado" />
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPoCont">
+            <EntityTypeMapping TypeName="DBTelaModel.tbPoCont">
+              <MappingFragment StoreEntitySet="tbPoCont">
+                <ScalarProperty Name="idPoCont" ColumnName="idPoCont" />
+                <ScalarProperty Name="daterecuv" ColumnName="daterecuv" />
+                <ScalarProperty Name="invoicePO" ColumnName="invoicePO" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbrollos">
+            <EntityTypeMapping TypeName="DBTelaModel.tbrollos">
+              <MappingFragment StoreEntitySet="tbrollos">
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="rolloName" ColumnName="rolloName" />
+                <ScalarProperty Name="ydastotal" ColumnName="ydastotal" />
+                <ScalarProperty Name="ydsrestantes" ColumnName="ydsrestantes" />
+                <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idpoCont" ColumnName="idpoCont" />
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="timesp" ColumnName="timesp" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="tono" ColumnName="tono" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="sec2" ColumnName="sec2" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="etiqueta" ColumnName="etiqueta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbswatch">
+            <EntityTypeMapping TypeName="DBTelaModel.tbswatch">
+              <MappingFragment StoreEntitySet="tbswatch">
+                <ScalarProperty Name="idswatches" ColumnName="idswatches" />
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="x1" ColumnName="x1" />
+                <ScalarProperty Name="x2" ColumnName="x2" />
+                <ScalarProperty Name="x3" ColumnName="x3" />
+                <ScalarProperty Name="y1" ColumnName="y1" />
+                <ScalarProperty Name="y2" ColumnName="y2" />
+                <ScalarProperty Name="y3" ColumnName="y3" />
+                <ScalarProperty Name="p1" ColumnName="p1" />
+                <ScalarProperty Name="p2" ColumnName="p2" />
+                <ScalarProperty Name="p3" ColumnName="p3" />
+                <ScalarProperty Name="p4" ColumnName="p4" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="a1" ColumnName="a1" />
+                <ScalarProperty Name="a2" ColumnName="a2" />
+                <ScalarProperty Name="a3" ColumnName="a3" />
+                <ScalarProperty Name="b1" ColumnName="b1" />
+                <ScalarProperty Name="b2" ColumnName="b2" />
+                <ScalarProperty Name="b3" ColumnName="b3" />
+                <ScalarProperty Name="fechaP2" ColumnName="fechaP2" />
+                <ScalarProperty Name="usuarioP2" ColumnName="usuarioP2" />
+                <ScalarProperty Name="c1" ColumnName="c1" />
+                <ScalarProperty Name="c2" ColumnName="c2" />
+                <ScalarProperty Name="c3" ColumnName="c3" />
+                <ScalarProperty Name="z1" ColumnName="z1" />
+                <ScalarProperty Name="z2" ColumnName="z2" />
+                <ScalarProperty Name="z3" ColumnName="z3" />
+                <ScalarProperty Name="fechaP3" ColumnName="fechaP3" />
+                <ScalarProperty Name="usuarioP3" ColumnName="usuarioP3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbtelaprocol">
+            <EntityTypeMapping TypeName="DBTelaModel.tbtelaprocol">
+              <MappingFragment StoreEntitySet="tbtelaprocol">
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="idtela" ColumnName="idtela" />
+                <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="procod" ColumnName="procod" />
+                <ScalarProperty Name="MarkerWidth" ColumnName="MarkerWidth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="DBTelaModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
