@@ -44,10 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -138,10 +138,16 @@
       <DependentUpon>ModelTela.edmx</DependentUpon>
       <LastGenOutput>ModelTela.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ContenedorsController.cs" />
+    <Compile Include="Controllers\RollosController.cs" />
+    <Compile Include="Controllers\SwatchesController.cs" />
+    <Compile Include="Controllers\TelaCodigosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,6 +161,21 @@
       <DependentUpon>ModelTela.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>ModelTela.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCodigosxidcontenedor_Result.cs">
+      <DependentUpon>ModelTela.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRollosxidcontenedortpc_Ancho_Result.cs">
+      <DependentUpon>ModelTela.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRollosxidcontenedortpc_Result.cs">
+      <DependentUpon>ModelTela.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRollosxidcontenedor_Ancho_Result.cs">
+      <DependentUpon>ModelTela.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetRollosxidcontenedor_Result.cs">
       <DependentUpon>ModelTela.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelTela.Context.cs">
@@ -200,7 +221,10 @@
     <Content Include="Models\ModelTela.edmx.diagram">
       <DependentUpon>ModelTela.edmx</DependentUpon>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,7 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

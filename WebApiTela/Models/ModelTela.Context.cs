@@ -12,6 +12,8 @@ namespace WebApiTela.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DBTelaEntities : DbContext
     {
@@ -35,5 +37,58 @@ namespace WebApiTela.Models
         public virtual DbSet<tbrollos> tbrollos { get; set; }
         public virtual DbSet<tbswatch> tbswatch { get; set; }
         public virtual DbSet<tbtelaprocol> tbtelaprocol { get; set; }
+    
+        public virtual ObjectResult<GetRollosxidcontenedortpc_Result> GetRollosxidcontenedortpc(Nullable<int> idcontenedor, Nullable<int> idtpc)
+        {
+            var idcontenedorParameter = idcontenedor.HasValue ?
+                new ObjectParameter("idcontenedor", idcontenedor) :
+                new ObjectParameter("idcontenedor", typeof(int));
+    
+            var idtpcParameter = idtpc.HasValue ?
+                new ObjectParameter("idtpc", idtpc) :
+                new ObjectParameter("idtpc", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRollosxidcontenedortpc_Result>("GetRollosxidcontenedortpc", idcontenedorParameter, idtpcParameter);
+        }
+    
+        public virtual ObjectResult<GetCodigosxidcontenedor_Result> GetCodigosxidcontenedor(Nullable<int> idcontenedor)
+        {
+            var idcontenedorParameter = idcontenedor.HasValue ?
+                new ObjectParameter("idcontenedor", idcontenedor) :
+                new ObjectParameter("idcontenedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCodigosxidcontenedor_Result>("GetCodigosxidcontenedor", idcontenedorParameter);
+        }
+    
+        public virtual ObjectResult<GetRollosxidcontenedor_Result> GetRollosxidcontenedor(Nullable<int> idcontenedor)
+        {
+            var idcontenedorParameter = idcontenedor.HasValue ?
+                new ObjectParameter("idcontenedor", idcontenedor) :
+                new ObjectParameter("idcontenedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRollosxidcontenedor_Result>("GetRollosxidcontenedor", idcontenedorParameter);
+        }
+    
+        public virtual ObjectResult<GetRollosxidcontenedortpc_Ancho_Result> GetRollosxidcontenedortpc_Ancho(Nullable<int> idcontenedor, Nullable<int> idtpc)
+        {
+            var idcontenedorParameter = idcontenedor.HasValue ?
+                new ObjectParameter("idcontenedor", idcontenedor) :
+                new ObjectParameter("idcontenedor", typeof(int));
+    
+            var idtpcParameter = idtpc.HasValue ?
+                new ObjectParameter("idtpc", idtpc) :
+                new ObjectParameter("idtpc", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRollosxidcontenedortpc_Ancho_Result>("GetRollosxidcontenedortpc_Ancho", idcontenedorParameter, idtpcParameter);
+        }
+    
+        public virtual ObjectResult<GetRollosxidcontenedor_Ancho_Result> GetRollosxidcontenedor_Ancho(Nullable<int> idcontenedor)
+        {
+            var idcontenedorParameter = idcontenedor.HasValue ?
+                new ObjectParameter("idcontenedor", idcontenedor) :
+                new ObjectParameter("idcontenedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRollosxidcontenedor_Ancho_Result>("GetRollosxidcontenedor_Ancho", idcontenedorParameter);
+        }
     }
 }

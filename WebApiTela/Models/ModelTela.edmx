@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBTelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBTelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -273,6 +273,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetCodigosxidcontenedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcontenedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRollosxidcontenedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcontenedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRollosxidcontenedor_Ancho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcontenedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRollosxidcontenedortpc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcontenedor" Type="int" Mode="In" />
+          <Parameter Name="idtpc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetRollosxidcontenedortpc_Ancho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcontenedor" Type="int" Mode="In" />
+          <Parameter Name="idtpc" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DBTelaModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -322,8 +339,7 @@
             <End Role="tbtelaprocol" EntitySet="tbtelaprocol" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBTelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -622,7 +638,73 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="GetRollosxidcontenedortpc" ReturnType="Collection(DBTelaModel.GetRollosxidcontenedortpc_Result)">
+            <Parameter Name="idcontenedor" Mode="In" Type="Int32" />
+            <Parameter Name="idtpc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCodigosxidcontenedor" ReturnType="Collection(DBTelaModel.GetCodigosxidcontenedor_Result)">
+          <Parameter Name="idcontenedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRollosxidcontenedor" ReturnType="Collection(DBTelaModel.GetRollosxidcontenedor_Result)">
+          <Parameter Name="idcontenedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRollosxidcontenedortpc_Ancho" ReturnType="Collection(DBTelaModel.GetRollosxidcontenedortpc_Ancho_Result)">
+            <Parameter Name="idcontenedor" Mode="In" Type="Int32" />
+            <Parameter Name="idtpc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetRollosxidcontenedor_Ancho" ReturnType="Collection(DBTelaModel.GetRollosxidcontenedor_Ancho_Result)">
+            <Parameter Name="idcontenedor" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetRollosxidcontenedortpc_Result">
+          <Property Type="Int32" Name="idrollo" Nullable="false" />
+          <Property Type="String" Name="rolloName" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="ancho" Nullable="true" />
+          <Property Type="Int32" Name="sec" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="proceso" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idtpc" Nullable="true" />
+          <Property Type="Int32" Name="idpoCont" Nullable="true" />
+          <Property Type="Int32" Name="idcontenedor" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetCodigosxidcontenedor_Result">
+          <Property Type="Int32" Name="idtpc" Nullable="false" />
+          <Property Type="String" Name="procod" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idcontenedor" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetRollosxidcontenedor_Result">
+          <Property Type="Int32" Name="idrollo" Nullable="false" />
+          <Property Type="String" Name="rolloName" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="ancho" Nullable="true" />
+          <Property Type="Int32" Name="sec" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="proceso" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idtpc" Nullable="true" />
+          <Property Type="Int32" Name="idpoCont" Nullable="true" />
+          <Property Type="Int32" Name="idcontenedor" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetRollosxidcontenedortpc_Ancho_Result">
+          <Property Type="Int32" Name="idrollo" Nullable="false" />
+          <Property Type="String" Name="rolloName" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="ancho" Nullable="true" />
+          <Property Type="Int32" Name="sec" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="proceso" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idtpc" Nullable="true" />
+          <Property Type="Int32" Name="idpoCont" Nullable="true" />
+          <Property Type="Int32" Name="idcontenedor" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetRollosxidcontenedor_Ancho_Result">
+          <Property Type="Int32" Name="idrollo" Nullable="false" />
+          <Property Type="String" Name="rolloName" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="ancho" Nullable="true" />
+          <Property Type="Int32" Name="sec" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="proceso" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idtpc" Nullable="true" />
+          <Property Type="Int32" Name="idpoCont" Nullable="true" />
+          <Property Type="Int32" Name="idcontenedor" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -789,6 +871,75 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetRollosxidcontenedortpc" FunctionName="DBTelaModel.Store.GetRollosxidcontenedortpc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTelaModel.GetRollosxidcontenedortpc_Result">
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="rolloName" ColumnName="rolloName" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="idpoCont" ColumnName="idpoCont" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCodigosxidcontenedor" FunctionName="DBTelaModel.Store.GetCodigosxidcontenedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTelaModel.GetCodigosxidcontenedor_Result">
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="procod" ColumnName="procod" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRollosxidcontenedor" FunctionName="DBTelaModel.Store.GetRollosxidcontenedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTelaModel.GetRollosxidcontenedor_Result">
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="rolloName" ColumnName="rolloName" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="idpoCont" ColumnName="idpoCont" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRollosxidcontenedortpc_Ancho" FunctionName="DBTelaModel.Store.GetRollosxidcontenedortpc_Ancho">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTelaModel.GetRollosxidcontenedortpc_Ancho_Result">
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="rolloName" ColumnName="rolloName" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="idpoCont" ColumnName="idpoCont" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRollosxidcontenedor_Ancho" FunctionName="DBTelaModel.Store.GetRollosxidcontenedor_Ancho">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTelaModel.GetRollosxidcontenedor_Ancho_Result">
+                <ScalarProperty Name="idrollo" ColumnName="idrollo" />
+                <ScalarProperty Name="rolloName" ColumnName="rolloName" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="sec" ColumnName="sec" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="idtpc" ColumnName="idtpc" />
+                <ScalarProperty Name="idpoCont" ColumnName="idpoCont" />
+                <ScalarProperty Name="idcontenedor" ColumnName="idcontenedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
